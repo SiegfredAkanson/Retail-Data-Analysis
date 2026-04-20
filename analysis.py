@@ -22,3 +22,7 @@ df["Month"] = df["Date"].dt.month
 monthly_sales = df.groupby("Month")["Sales"].sum() #Monthly Total Sales
 print(monthly_sales)
 
+def outliers(group):
+    median = np.median(group)
+    group["Sales"] = np.where(group["Sales"]<1000, median, group["Sales"])
+    return group
